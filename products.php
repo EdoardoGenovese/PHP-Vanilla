@@ -13,23 +13,15 @@ $stmt ->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $total_products = $pdo->query('SELECT * FROM products')->rowCount();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<?=_header('Prodotti')?>
 <body>
-    <?=_header('Prodotti')?>
     <div>
-        <h1>Prodotti</h1>
-        <p><?=$total_products?> Prodotti Totali</p>
-        <div class="products-wrapper">
+        <h1 class="container">Prodotti</h1>
+        <p class="container"><?=$total_products?> Prodotti trovati</p>
+        <div class="products-wrapper d-flex justify-content-around mt-3 mb-3">
             <?php foreach ($products as $product): ?>
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="img/<?=$product['image']?>" class="card-img-top" alt="<?=$product['name']?>">
                     <div class="card-body">
                         <h5 class="card-title"><?=$product['name']?></h5>
                         <p class="price"><?=$product['price']?>€</p>

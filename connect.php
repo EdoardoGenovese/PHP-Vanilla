@@ -21,6 +21,7 @@ function connect() {
 }
 
 function _header($title) {
+    $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
     echo <<<EOT
     <!DOCTYPE html>
     <html>
@@ -34,16 +35,19 @@ function _header($title) {
             <header>
                 <nav class="navbar navbar-expand-lg bg-light">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="Home.php">Navbar</a>
+                        <a class="navbar-brand" href="index.php?page=home">PHP Project</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="products.php">Prodotti</a>
+                                <a class="nav-link active" aria-current="page" href="index.php?page=products">Prodotti</a>
                             </li>
                             </ul>
+                            <a class="m-3" href="index.php?page=cart">
+                                <i class="fas fa-shopping-cart"><span>$num_items_in_cart</span></i>
+                            </a>
                             <form class="d-flex" role="search">
                             <input class="form-control me-2" type="search" placeholder="Cerca un prodotto..." aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Cerca</button>
@@ -60,8 +64,8 @@ function _header($title) {
     echo <<<EOT
             </main>
             <footer>
-                <hr>
-                <div class="content-wrapper">
+                <hr class="m-6">
+                <div>
                     <p>&copy; $year, PHP Project</p>
                 </div>
             </footer>
